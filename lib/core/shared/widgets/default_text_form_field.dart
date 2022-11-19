@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 class DefaultTextFormFieldWidget extends StatelessWidget {
   final bool? enabled;
   final String? Function()? onTab;
-  final String? Function(String? val)? onChange;
-  final String? Function(String? val)? onSubmitted;
+  final ValueChanged<String>? onChange;
+  final ValueChanged<String>? onSubmitted;
   final String hintText;
   final String? labelText;
   // final IconData? prefixIcon;
@@ -18,7 +18,7 @@ class DefaultTextFormFieldWidget extends StatelessWidget {
   final TextStyle? hintStyle;
   final TextStyle? textStyle;
   final TextEditingController? controller;
-  final String? Function(String? val)? validatorFunction;
+  final String? Function(String?)? validatorFunction;
   final double? borderRadius;
   final Color borderColor = Colors.grey;
   final double borderSize = 1;

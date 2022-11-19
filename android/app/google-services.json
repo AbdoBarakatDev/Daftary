@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "990936981879",
+    "project_id": "daftary-app",
+    "storage_bucket": "daftary-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990936981879:android:0adb5c044c385c720c4172",
+        "android_client_info": {
+          "package_name": "com.example.daftary_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990936981879-d96rl42vtvo3vomb3e4n3tndo1a90pti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.daftary_app",
+            "certificate_hash": "8458959d84f7862822e50b51884f7fe43753c58d"
+          }
+        },
+        {
+          "client_id": "990936981879-pfuevr8drdhiuf0ovpar7snc8gf78ku6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS2TT2AJy_yHSwgnCkeWfV8tvOr8esrV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "990936981879-pfuevr8drdhiuf0ovpar7snc8gf78ku6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

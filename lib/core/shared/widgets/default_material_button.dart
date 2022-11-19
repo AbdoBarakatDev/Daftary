@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class DefaultMaterialButton extends StatelessWidget {
   final Color? buttonColor;
   final double? height;
-  // bool? isEnabled;
+  final bool? isEnabled;
   final double? width;
   final String text;
 
@@ -29,6 +29,7 @@ class DefaultMaterialButton extends StatelessWidget {
       this.textColor,
       this.isSelected,
       this.fontSize,
+      this.isEnabled,
       this.inActiveTextColor,
       this.activeButtonColor,
       this.inActiveButtonColor})
@@ -49,13 +50,16 @@ class DefaultMaterialButton extends StatelessWidget {
       child: MaterialButton(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         // enableFeedback: isEnabled!,
-        textColor: textColor ?? (textColor ?? defaultAppColor),
+        textColor: textColor ?? defaultAppColor,
         onPressed: function,
         child: Text(
           text,
           style: textStyle ??
               (isSelected == true
-                  ? TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold)
+                  ? TextStyle(
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.bold,
+                      color: textColor ?? defaultAppColor)
                   : TextStyle(
                       fontSize: fontSize,
                       fontWeight: FontWeight.bold,
