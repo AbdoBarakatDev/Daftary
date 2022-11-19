@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:daftary_app/core/shared/styles/colors.dart';
 import 'package:daftary_app/core/shared/widgets/default_material_button.dart';
 import 'package:daftary_app/core/shared/widgets/default_text_form_field.dart';
@@ -5,6 +7,7 @@ import 'package:daftary_app/core/shared/widgets/loading_widget.dart';
 import 'package:daftary_app/shared_featuers/auth_feature/controller/phone_auth_cubit.dart';
 import 'package:daftary_app/shared_featuers/auth_feature/controller/phone_auth_states.dart';
 import 'package:daftary_app/shared_featuers/auth_feature/view/screens/phone_otp_screen.dart';
+import 'package:daftary_app/shared_featuers/auth_feature/view/widgets/phone_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,20 +40,16 @@ class PhoneAuthScreen extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        DefaultTextFormFieldWidget(
-                          height: 80,
-                          hintText: "Type your phone",
-                          textInputType: TextInputType.phone,
-                          borderRadius: 20,
-                          controller: phoneController,
-                          prefix: const Icon(
-                            Icons.phone,
-                            color: defaultAppColor,
-                          ),
-                          validatorFunction: (val) {
-                            return PhoneAuthCubit.get(context)
-                                .validatePhone(phoneController.text);
+                        PhonePickerWidget(
+                          onSaved: (value) {
+                            log("on Saved Complete Number: ${value!.completeNumber.toString()}");
                           },
+                          validator: (phone) {
+                            log("on validator Complete Number: ${phone!.completeNumber.toString()}");
+                            return PhoneAuthCubit.get(context)
+                                .validatePhone(phone.completeNumber);
+                          },
+                          phoneController: phoneController,
                         ),
                         const SizedBox(
                           height: 10,
@@ -66,10 +65,13 @@ class PhoneAuthScreen extends StatelessWidget {
                                 isSelected: true,
                                 textColor: secondAppColor,
                                 function: () {
+                                  log("=====>Phone Controller is ${PhoneAuthCubit.get(context).fullPhoneNumber}");
                                   if (_formKey.currentState!.validate()) {
                                     PhoneAuthCubit.get(context)
                                         .sendPhoneVerification(
-                                            context, phoneController.text);
+                                            context,
+                                            PhoneAuthCubit.get(context)
+                                                .fullPhoneNumber);
                                   }
                                 },
                                 text: "Send Verification Code"),

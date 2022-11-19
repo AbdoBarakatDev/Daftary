@@ -43,7 +43,7 @@ class PhoneOtpScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               const Text(
-                                "Type OTP code sent to you",
+                                "Type 6-digits OTP code sent to you",
                                 style: TextStyle(
                                     fontSize: 20, color: defaultAppColor),
                               ),
@@ -51,10 +51,14 @@ class PhoneOtpScreen extends StatelessWidget {
                                 height: 20,
                               ),
                               SizedBox(
-                                width: 120,
+                                width: 130,
                                 child: DefaultTextFormFieldWidget(
                                   height: 80,
                                   hintText: "OTP",
+                                  hidden: true,
+                                  autofillHints: const [
+                                    AutofillHints.oneTimeCode
+                                  ],
                                   textInputType: TextInputType.phone,
                                   borderRadius: 20,
                                   controller: otpController,

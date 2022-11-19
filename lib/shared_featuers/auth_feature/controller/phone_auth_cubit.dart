@@ -12,18 +12,19 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
   PhoneAuthCubit() : super(PhoneAuthInitialStates());
   static PhoneAuthCubit get(BuildContext context) => BlocProvider.of(context);
 
+  String fullPhoneNumber = "";
+
   validatePhone(String phone) {
     String result = "";
-    if (!phone.startsWith("+")) {
-      result = "Phone should start with Country code i.e +20 for Egypt";
-      emit(PhoneAuthValidationStates());
-    } else if (phone.length < 13) {
-      result = "Type a correct phone number";
-      emit(PhoneAuthValidationStates());
-    } else {
-      return;
+    String pattern = r'/^([+]\d{2})?\d{10}$/';
+    RegExp regex = RegExp(pattern);
+    if (phone.isEmpty) {
+      result = 'Please enter mobile number';
+    } else if (!regex.hasMatch(phone.trim().toString())) {
+      log("===================>>>>Not Valid Number");
+      result = 'Please enter valid mobile number';
     }
-
+    fullPhoneNumber = phone;
     return result;
   }
 

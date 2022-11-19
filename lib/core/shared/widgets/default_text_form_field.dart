@@ -20,19 +20,21 @@ class DefaultTextFormFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validatorFunction;
   final double? borderRadius;
-  final Color borderColor = Colors.grey;
-  final double borderSize = 1;
-  final bool hidden = false;
+  final Color? borderColor;
+  final double? borderSize;
+  final bool? hidden;
   final TextInputAction? textInputAction;
   final TextInputType? textInputType;
   final bool autoCorrect = false;
-  final int maxLines = 1;
+  final int? maxLines;
   final TextDirection? textDirection;
   final Key? textFieldKey;
   final Color? cursorColor;
   final int? maxLength;
   final double? height;
   final bool? isDense;
+  final Iterable<String>? autofillHints;
+  final TextAlign? textAlign;
   final EdgeInsets? contentPadding;
   const DefaultTextFormFieldWidget(
       {Key? key,
@@ -59,7 +61,13 @@ class DefaultTextFormFieldWidget extends StatelessWidget {
       this.maxLength,
       this.contentPadding,
       this.height,
-      this.isDense})
+      this.isDense,
+      this.textAlign,
+      this.autofillHints,
+      this.borderColor,
+      this.borderSize,
+      this.hidden,
+      this.maxLines})
       : super(key: key);
 
   @override
@@ -67,15 +75,17 @@ class DefaultTextFormFieldWidget extends StatelessWidget {
     return SizedBox(
       height: height ?? 60,
       child: TextFormField(
+        autofillHints: autofillHints,
+        textAlign: textAlign ?? TextAlign.center,
         autocorrect: autoCorrect,
-        maxLines: maxLines,
+        maxLines: maxLines ?? 1,
         key: textFieldKey,
         cursorColor: cursorColor,
         maxLength: maxLength,
         textInputAction: textInputAction,
         keyboardType: textInputType,
         enabled: enabled,
-        obscureText: hidden,
+        obscureText: hidden ?? false,
         style: textStyle,
         controller: controller,
         validator: validatorFunction,
@@ -111,15 +121,18 @@ class DefaultTextFormFieldWidget extends StatelessWidget {
           suffix: Padding(
               padding: const EdgeInsets.only(right: 10), child: suffixIcon),
           border: OutlineInputBorder(
-            borderSide: BorderSide(width: borderSize, color: borderColor),
+            borderSide: BorderSide(
+                width: borderSize ?? 1, color: borderColor ?? Colors.grey),
             borderRadius: BorderRadius.circular(borderRadius ?? 0),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: borderSize, color: borderColor),
+            borderSide: BorderSide(
+                width: borderSize ?? 1, color: borderColor ?? Colors.grey),
             borderRadius: BorderRadius.circular(borderRadius ?? 0),
           ),
           disabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: borderSize, color: borderColor),
+            borderSide: BorderSide(
+                width: borderSize ?? 1, color: borderColor ?? Colors.grey),
             borderRadius: BorderRadius.circular(borderRadius ?? 0),
           ),
         ),
