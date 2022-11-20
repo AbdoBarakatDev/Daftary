@@ -1,12 +1,18 @@
 import 'package:daftary_app/core/shared/widgets/list_builder_widget.dart';
+import 'package:daftary_app/utils/dummy.dart';
 import 'package:flutter/material.dart';
 
-class ListCustomers extends StatelessWidget {
-  const ListCustomers({Key? key}) : super(key: key);
-
+class CustomUsersList extends StatelessWidget {
+  const CustomUsersList({Key? key, required this.listUserType})
+      : super(key: key);
+  final List listUserType;
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
-        child: SizedBox(height: double.infinity, child: ListBuilderWidget()));
+    return Expanded(
+        child: SizedBox(
+            height: double.infinity,
+            child: ListBuilderWidget(
+              listUserType: listUserType,
+            )));
   }
 }

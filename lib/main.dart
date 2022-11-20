@@ -21,7 +21,7 @@ void main() {
             create: (context) =>
                 PinCodeScreenCubit()..initializeCurrentUserId()),
       ],
-      child: PhoneAuthScreen(),
+      child: HomeLayout(),
     ),
     theme: lightTheme,
   ));

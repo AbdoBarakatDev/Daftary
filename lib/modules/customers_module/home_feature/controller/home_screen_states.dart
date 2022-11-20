@@ -2,6 +2,8 @@ abstract class HomeScreenStates {}
 
 class HomeScreenInitialState extends HomeScreenStates {}
 
+class HomeScreenChangeTabBarIndexState extends HomeScreenStates {}
+
 class CreateCustomersDataBaseLoadingState extends HomeScreenStates {}
 
 class CreateCustomersDataBaseSuccessState extends HomeScreenStates {}

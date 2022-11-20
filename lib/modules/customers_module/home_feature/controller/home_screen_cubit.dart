@@ -19,66 +19,72 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
   String customersTableColumnGive = "give";
   Database? database;
 
+  int tabBarIndex = 0;
+  changeTabBarIndex(int index) {
+    tabBarIndex = index;
+    emit(HomeScreenChangeTabBarIndexState());
+  }
+
 /*
 CREATE TABLE curren_user (id INTEGER PRIMARY KEY,name TEXT,phone TEXT,email TEXT,pin_code TEXT);
 */
 
-  List<Map> listCustomers = [];
-  createCustomersDatabase() async {
-    await openDatabase(
-      "myDaftar.db",
-      version: 1,
-      onCreate: (db, version) {
-        db
-            .execute(
-                "CREATE TABLE $customersTableName ($customersTableColumnId INTEGER PRIMARY KEY,$customersTableColumnLinkedTableId INTEGER,$customersTableColumnName TEXT,$customersTableColumnPhone TEXT,$customersTableColumnGet REAL,$customersTableColumnGive REAL")
-            .then((value) => print("Custoomer Database Successfully Created"))
-            .onError((error, stackTrace) =>
-                print("Database Error Creation ${error.toString()}"));
-      },
-      onOpen: (db) {
-        getDataFromDB(db);
-        print("Database Opened");
-      },
-    ).then((value) {
-      database = value;
-      emit(CreateCustomersDataBaseSuccessState());
-    });
-  }
+  // List<Map> listCustomers = [];
+  // createCustomersDatabase() async {
+  //   await openDatabase(
+  //     "myDaftar.db",
+  //     version: 1,
+  //     onCreate: (db, version) {
+  //       db
+  //           .execute(
+  //               "CREATE TABLE $customersTableName ($customersTableColumnId INTEGER PRIMARY KEY,$customersTableColumnLinkedTableId INTEGER,$customersTableColumnName TEXT,$customersTableColumnPhone TEXT,$customersTableColumnGet REAL,$customersTableColumnGive REAL")
+  //           .then((value) => print("Custoomer Database Successfully Created"))
+  //           .onError((error, stackTrace) =>
+  //               print("Database Error Creation ${error.toString()}"));
+  //     },
+  //     onOpen: (db) {
+  //       getDataFromDB(db);
+  //       print("Database Opened");
+  //     },
+  //   ).then((value) {
+  //     database = value;
+  //     emit(CreateCustomersDataBaseSuccessState());
+  //   });
+  // }
 
-  void getDataFromDB(Database db) async {
-    listCustomers = [];
-    emit(GetCustomersDataBaseLoadingState());
-    await db.rawQuery("SELECT * FROM $customersTableName").then((value) {
-      for (var element in value) {
-        listCustomers.add(element);
-        log(element["id"].toString());
-        log(element["name"].toString());
-        log(element["get"].toString());
-        log(element["give"].toString());
-      }
-      log(listCustomers.toString());
-      emit(GetCustomersDataBaseSuccessState());
-      // print("New Tasks is $newTasks");
-      // print("done Tasks is $doneTasks");
-      // print("archived Tasks is $archivedTasks");
-    });
-  }
+  // void getDataFromDB(Database db) async {
+  //   listCustomers = [];
+  //   emit(GetCustomersDataBaseLoadingState());
+  //   await db.rawQuery("SELECT * FROM $customersTableName").then((value) {
+  //     for (var element in value) {
+  //       listCustomers.add(element);
+  //       log(element["id"].toString());
+  //       log(element["name"].toString());
+  //       log(element["get"].toString());
+  //       log(element["give"].toString());
+  //     }
+  //     log(listCustomers.toString());
+  //     emit(GetCustomersDataBaseSuccessState());
+  //     // print("New Tasks is $newTasks");
+  //     // print("done Tasks is $doneTasks");
+  //     // print("archived Tasks is $archivedTasks");
+  //   });
+  // }
 
-  void insertInCustomers(CustomerModel customerModel) async {
-    await database!
-        .transaction((txn) => txn
-                .rawInsert(
-                    "INSERT INTO $customersTableName ($customersTableColumnName ,$customersTableColumnPhone ,$customersTableColumnGet ,$customersTableColumnGive) VALUES (${customerModel.name},${customerModel.phone},${customerModel.get},${customerModel.give}) ")
-                .then((value) => {
-                      log("value of insert :  $value"),
-                      emit(InsertCustomersDataBaseSuccessState())
-                    })
-                .catchError((error, stackTrace) {
-              log("Error while inserting a Row Error :${error.toString()}");
-            }))
-        .then((value) {
-      getDataFromDB(database!);
-    });
-  }
+  // void insertInCustomers(CustomerModel customerModel) async {
+  //   await database!
+  //       .transaction((txn) => txn
+  //               .rawInsert(
+  //                   "INSERT INTO $customersTableName ($customersTableColumnName ,$customersTableColumnPhone ,$customersTableColumnGet ,$customersTableColumnGive) VALUES (${customerModel.name},${customerModel.phone},${customerModel.get},${customerModel.give}) ")
+  //               .then((value) => {
+  //                     log("value of insert :  $value"),
+  //                     emit(InsertCustomersDataBaseSuccessState())
+  //                   })
+  //               .catchError((error, stackTrace) {
+  //             log("Error while inserting a Row Error :${error.toString()}");
+  //           }))
+  //       .then((value) {
+  //     getDataFromDB(database!);
+  //   });
+  // }
 }

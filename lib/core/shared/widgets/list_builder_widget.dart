@@ -1,9 +1,11 @@
+import 'package:daftary_app/core/shared/models/customer_model.dart';
 import 'package:daftary_app/core/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 
 class ListBuilderWidget extends StatelessWidget {
-  const ListBuilderWidget({Key? key}) : super(key: key);
-
+  const ListBuilderWidget({Key? key, required this.listUserType})
+      : super(key: key);
+  final List listUserType;
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -15,20 +17,26 @@ class ListBuilderWidget extends StatelessWidget {
               height: 70,
               width: double.infinity,
               child: Row(
-                children: const [
+                children: [
                   CircleAvatar(
                     radius: 20,
                     backgroundColor: defaultAppColor,
-                    child: Text("AB"),
+                    child: Text(listUserType[index].name![0]),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  Expanded(child: Text("Abdo Barakat")),
-                  Spacer(),
+                  Expanded(child: Text(listUserType[index].name!)),
+                  const Spacer(),
                   Text(
-                    "20",
-                    style: TextStyle(color: Colors.red),
+                    (listUserType[index].get! >= listUserType[index].give!)
+                        ? listUserType[index].get!.toInt().toString()
+                        : listUserType[index].give!.toInt().toString(),
+                    style: TextStyle(
+                        color: (listUserType[index].get! >=
+                                listUserType[index].give!)
+                            ? Colors.red
+                            : mainBackgroundColor),
                   )
                 ],
               ),
@@ -41,6 +49,6 @@ class ListBuilderWidget extends StatelessWidget {
               indent: 20,
               endIndent: 20,
             ),
-        itemCount: 10);
+        itemCount: listUserType.length);
   }
 }

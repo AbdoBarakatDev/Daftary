@@ -2,6 +2,8 @@ abstract class HomeLayoutStates {}
 
 class HomeLayoutInitialState extends HomeLayoutStates {}
 
+class ChangeHomeLayoutBottomNavState extends HomeLayoutStates {}
+
 class CreateUserDataBaseLoadingState extends HomeLayoutStates {}
 
 class CreateUserDataBaseSuccessState extends HomeLayoutStates {}

@@ -25,6 +25,8 @@ const Color pinCodeSelectedColor = Colors.white;
 const Color dropDownButtonBorderColor = Colors.grey;
 const Color separatorColor = Colors.grey;
 
+const Color activeMaterialButtonColor = Colors.white;
+const Color activeMaterialButtonTextColor = Colors.teal;
 final Color inActiveMaterialButtonColor = Colors.grey.shade200.withOpacity(0.3);
 final Color inActiveMaterialButtonTextColor = Colors.grey.shade400;
 const Color pdfIconColor = Colors.white;

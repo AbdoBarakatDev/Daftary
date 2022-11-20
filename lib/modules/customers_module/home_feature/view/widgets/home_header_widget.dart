@@ -11,34 +11,36 @@ class HomeHeaderWidget extends StatelessWidget {
       color: defaultAppColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Row(
-          children: [
-            DefaultMaterialButton(
-              function: () {},
-              text: "Customer",
-              isSelected: true,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            DefaultMaterialButton(
-              function: () {},
-              text: "Supplier",
-              isSelected: false,
-              height: 55,
-              radius: 10,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.file_present_sharp,
-                  size: 40,
-                  color: pdfIconColor,
-                )),
-          ],
+        child: Expanded(
+          child: Row(
+            children: [
+              DefaultMaterialButton(
+                function: () {},
+                text: "Customer",
+                isSelected: true,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              DefaultMaterialButton(
+                function: () {},
+                text: "Supplier",
+                isSelected: false,
+                height: 55,
+                radius: 10,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.file_present_sharp,
+                    size: 40,
+                    color: pdfIconColor,
+                  )),
+            ],
+          ),
         ),
       ),
     );

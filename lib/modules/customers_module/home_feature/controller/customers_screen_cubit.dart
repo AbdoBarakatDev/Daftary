@@ -3,9 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
 
-class HomeLayoutCubit extends Cubit<HomeLayoutStates> {
-  HomeLayoutCubit() : super(HomeLayoutInitialState());
-  static HomeLayoutCubit get(BuildContext context) => BlocProvider.of(context);
+class CustomersScreenCubit extends Cubit<HomeLayoutStates> {
+  CustomersScreenCubit() : super(HomeLayoutInitialState());
+  static CustomersScreenCubit get(BuildContext context) =>
+      BlocProvider.of(context);
   String currentUserTableName = "currentUser";
   String currentUserTableColumnId = "id";
   String currentUserTableColumnName = "name";

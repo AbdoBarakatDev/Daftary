@@ -5,6 +5,7 @@ class DefaultAppBarWidget extends StatelessWidget
   @required
   final String title;
   final List<Widget>? actions;
+  final PreferredSizeWidget? bottom;
   final double? height;
   final double? elevation;
   final Widget? leading;
@@ -16,12 +17,14 @@ class DefaultAppBarWidget extends StatelessWidget
       this.leading,
       this.backGroundColor,
       this.height,
-      this.elevation})
+      this.elevation,
+      this.bottom})
       : super(key: key);
 
   @override
   PreferredSizeWidget build(BuildContext context) {
     return AppBar(
+      bottom: bottom,
       elevation: elevation ?? 0,
       actionsIconTheme: Theme.of(context).iconTheme,
       iconTheme: Theme.of(context).iconTheme,
