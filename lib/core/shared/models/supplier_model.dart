@@ -1,5 +1,3 @@
-import 'package:daftary_app/core/shared/models/transaction_model.dart';
-
 class SupplierModel {
   final int id;
   final String? name;

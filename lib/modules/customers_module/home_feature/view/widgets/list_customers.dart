@@ -1,5 +1,4 @@
 import 'package:daftary_app/core/shared/widgets/list_builder_widget.dart';
-import 'package:daftary_app/utils/dummy.dart';
 import 'package:flutter/material.dart';
 
 class CustomUsersList extends StatelessWidget {

@@ -1,4 +1,7 @@
 {
     "dart.flutterSdkPath": "C:\\flutter_windows_3.0.0-stable\\flutter",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "cSpell.words": [
+        "Daftary"
+    ]
 }

@@ -1,4 +1,3 @@
-import 'package:daftary_app/core/shared/models/customer_model.dart';
 import 'package:daftary_app/core/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 

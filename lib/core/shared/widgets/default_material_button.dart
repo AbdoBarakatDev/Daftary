@@ -50,7 +50,6 @@ class DefaultMaterialButton extends StatelessWidget {
       child: MaterialButton(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         // enableFeedback: isEnabled!,
-        textColor: textColor ?? defaultAppColor,
         onPressed: function,
         child: Text(
           text,

@@ -1,7 +1,3 @@
-import 'dart:developer';
-
-import 'package:daftary_app/core/shared/models/customer_model.dart';
-
 import 'package:daftary_app/modules/customers_module/home_feature/controller/home_screen_states.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

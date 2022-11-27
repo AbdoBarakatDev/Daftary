@@ -1,52 +1,85 @@
-import 'package:daftary_app/core/shared/models/user_model.dart';
-import 'package:daftary_app/modules/customers_module/home_feature/controller/home_layout_cubit.dart';
-import 'package:daftary_app/modules/customers_module/home_feature/controller/home_screen_cubit.dart';
+import 'dart:developer';
+
+import 'package:daftary_app/core/shared/helpers.dart/toast_helper.dart';
+import 'package:daftary_app/core/shared/styles/colors.dart';
+import 'package:daftary_app/modules/customers_module/home_feature/view/screens/home_layout.dart';
+import 'package:daftary_app/shared_featuers/auth_feature/controller/phone_otp_cubit.dart';
+import 'package:daftary_app/shared_featuers/auth_feature/controller/phone_otp_states.dart';
 import 'package:daftary_app/shared_featuers/pin_code_featue/controller/pin_code_cubit.dart';
 import 'package:daftary_app/shared_featuers/pin_code_featue/controller/pin_code_states.dart';
+import 'package:daftary_app/shared_featuers/pin_code_featue/view/widgets/pin_code_auto_get_widget.dart';
 import 'package:daftary_app/shared_featuers/pin_code_featue/view/widgets/pin_code_widget.dart';
-import 'package:daftary_app/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PinCodeScreen extends StatelessWidget {
-  PinCodeScreen({Key? key}) : super(key: key);
-  final _formKey = GlobalKey<FormState>();
+  final String verificationId;
+  final String _code = "";
+  final TextEditingController otpController = TextEditingController();
+  PinCodeScreen({super.key, required this.verificationId});
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PinCodeScreenCubit, PinCodeScreenStates>(
-      listener: ((context, state) {}),
-      builder: (context, state) {
-        return Scaffold(
+    return BlocConsumer<PhoneOtpCubit, PhoneOtpStates>(
+      listener: (context, state) {
+        if (state is PhoneOtpGetCodeSuccessStates) {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomeLayout(),
+              ));
+          ToastHelper.showToast(
+              message: "Welcome Back", color: defaultAppColor as MaterialColor);
+        } else {
+          ToastHelper.showToast(
+              message: "Wrong Verification Code", color: Colors.red);
+        }
+      },
+      builder: (context, state) => MaterialApp(
+        theme: ThemeData.light(),
+        home: Scaffold(
           body: SafeArea(
-            minimum: const EdgeInsets.only(top: 100),
-            child: Form(
-              key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
                   const Text(
-                    AppStrings.pinCodeText,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                    "Enter 6-digits sent to your phone",
+                    style: TextStyle(color: defaultAppColor, fontSize: 30),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 40,
                   ),
-                  PinCodeWidget(
-                    onChange: (val) {
-                      PinCodeScreenCubit.get(context)
-                          .pinCodeValidation(context: context, value: val!);
+                  PinCodeAutoGetWidget(
+                    otpController: otpController,
+                    code: PhoneOtpCubit.get(context).pinCode,
+                    onChange: (code) async {
+                      log("controller text is : $code & in cubit: ${PhoneOtpCubit.get(context).pinCode}");
+                      PhoneOtpCubit.get(context)
+                          .validatePinCode(code.toString());
+                      if (code!.length == 6) {
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        PhoneOtpCubit.get(context).getOtpCode(
+                            context: context,
+                            verificationId: verificationId,
+                            smsCode: otpController.text);
+                      }
+                    },
+                    onComplete: (code) async {
+                      PhoneOtpCubit.get(context).getOtpCode(
+                          context: context,
+                          verificationId: verificationId,
+                          smsCode: otpController.text);
                     },
                   ),
                 ],
               ),
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

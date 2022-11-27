@@ -1,10 +1,6 @@
-import 'dart:async';
-import 'package:daftary_app/modules/customers_module/home_feature/view/screens/home_layout.dart';
-import 'package:daftary_app/shared_featuers/pin_code_featue/controller/pin_code_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 
 class PinCodeWidget extends StatelessWidget {
   PinCodeWidget({
@@ -31,8 +27,7 @@ class PinCodeWidget extends StatelessWidget {
   final String? Function(String? val)? onChange;
   final int? pinCodeLength;
   final OtpFieldController otpController = OtpFieldController();
-  final StreamController<ErrorAnimationType>? errorController =
-      StreamController<ErrorAnimationType>();
+
   final Color pinCodeBackgroundColor = Colors.grey.shade200;
   final Color pinCodeBorderColor = Colors.grey.shade600;
 
