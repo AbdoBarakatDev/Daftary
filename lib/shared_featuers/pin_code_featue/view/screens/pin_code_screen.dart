@@ -5,16 +5,12 @@ import 'package:daftary_app/core/shared/styles/colors.dart';
 import 'package:daftary_app/modules/customers_module/home_feature/view/screens/home_layout.dart';
 import 'package:daftary_app/shared_featuers/auth_feature/controller/phone_otp_cubit.dart';
 import 'package:daftary_app/shared_featuers/auth_feature/controller/phone_otp_states.dart';
-import 'package:daftary_app/shared_featuers/pin_code_featue/controller/pin_code_cubit.dart';
-import 'package:daftary_app/shared_featuers/pin_code_featue/controller/pin_code_states.dart';
 import 'package:daftary_app/shared_featuers/pin_code_featue/view/widgets/pin_code_auto_get_widget.dart';
-import 'package:daftary_app/shared_featuers/pin_code_featue/view/widgets/pin_code_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PinCodeScreen extends StatelessWidget {
   final String verificationId;
-  final String _code = "";
   final TextEditingController otpController = TextEditingController();
   PinCodeScreen({super.key, required this.verificationId});
   @override

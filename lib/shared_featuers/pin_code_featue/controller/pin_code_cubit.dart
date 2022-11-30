@@ -1,25 +1,16 @@
 import 'dart:developer';
-import 'dart:math' as math;
+import 'package:daftary_app/core/shared/helpers.dart/shared_pref_helper.dart';
 import 'package:daftary_app/core/shared/models/user_model.dart';
 import 'package:daftary_app/modules/customers_module/home_feature/view/screens/home_layout.dart';
 import 'package:daftary_app/shared_featuers/pin_code_featue/controller/pin_code_states.dart';
 import 'package:daftary_app/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PinCodeScreenCubit extends Cubit<PinCodeScreenStates> {
   PinCodeScreenCubit() : super(PinCodeInitialState());
   static PinCodeScreenCubit get(BuildContext context) =>
       BlocProvider.of(context);
-
-  Future<String?> initializeCurrentUserId() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    log("userId======> ${pref.getString(userId)}");
-    generateNewUserId();
-    myCurrentUserId = pref.getString(userId);
-    return myCurrentUserId;
-  }
 
   pinCodeValidation({required BuildContext context, required String value}) {
     emit(PinCodeValidationLoadingState());
@@ -43,7 +34,6 @@ class PinCodeScreenCubit extends Cubit<PinCodeScreenStates> {
         emit(PinCodeValidationErrorState());
       }
     } else {
-      initializeCurrentUserId();
       saveCurrentUserData(UserModel(
           id: myCurrentUserId!, pinCode: value, isLoggedBefore: true));
       log("User didn't logged yet");
@@ -51,43 +41,25 @@ class PinCodeScreenCubit extends Cubit<PinCodeScreenStates> {
   }
 
   saveCurrentUserData(UserModel userModel) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString(userId, userModel.id);
-    preferences.setString(userName, userModel.name ?? "");
-    preferences.setString(userEmail, userModel.email ?? "");
-    preferences.setString(userPhone, userModel.phone ?? "");
-    preferences.setString(userPinCode, userModel.pinCode ?? "");
-    preferences.setString(userPinCode, userModel.pinCode ?? "");
-    preferences.setBool(userPinCode, userModel.isLoggedBefore ?? false);
+    CashHelper.putData(key: userId, value: userModel.id);
+    CashHelper.putData(key: userName, value: userModel.id);
+    CashHelper.putData(key: userEmail, value: userModel.id);
+    CashHelper.putData(key: userPhone, value: userModel.id);
+    CashHelper.putData(key: userPinCode, value: userModel.id);
   }
 
   getUserData() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    log("userId======> ${pref.getString(userId)}");
-    log("userName======> ${pref.getString(userName)}");
-    log("userEmail======> ${pref.getString(userEmail)}");
-    log("userPhone======> ${pref.getString(userPhone)}");
-    log("userPinCode======> ${pref.getString(userPinCode)}");
+    log("userId======> ${CashHelper.getData(key: userId)}");
+    log("userName======> ${CashHelper.getData(key: userName)}");
+    log("userEmail======> ${CashHelper.getData(key: userEmail)}");
+    log("userPhone======> ${CashHelper.getData(key: userPhone)}");
+    log("userPinCode======> ${CashHelper.getData(key: userPinCode)}");
     return UserModel(
-      id: pref.getString(userId)!,
-      name: pref.getString(userName),
-      email: pref.getString(userEmail),
-      phone: pref.getString(userPhone),
-      pinCode: pref.getString(userPinCode),
+      id: CashHelper.getData(key: userId)!,
+      name: CashHelper.getData(key: userName),
+      email: CashHelper.getData(key: userEmail),
+      phone: CashHelper.getData(key: userPhone),
+      pinCode: CashHelper.getData(key: userPinCode),
     );
-  }
-
-  void generateNewUserId() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString(userId, generateRandomId(len: 10));
-    myCurrentUserId = preferences.getString(userId);
-  }
-
-  String generateRandomId({int len = 10}) {
-    var r = math.Random();
-    const _chars =
-        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    return List.generate(len, (index) => _chars[r.nextInt(_chars.length)])
-        .join();
   }
 }

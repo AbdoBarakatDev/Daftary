@@ -27,9 +27,13 @@ class PhoneAuthScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        "Type 6-digits OTP code sent to you",
-                        style: TextStyle(fontSize: 20, color: defaultAppColor),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Type Your Phone Number To Register",
+                          style:
+                              TextStyle(fontSize: 20, color: defaultAppColor),
+                        ),
                       ),
                       const SizedBox(
                         height: 20,

@@ -4,7 +4,7 @@ import 'package:daftary_app/modules/customers_module/home_feature/controller/hom
 import 'package:daftary_app/modules/customers_module/home_feature/controller/home_screen_states.dart';
 import 'package:daftary_app/modules/customers_module/home_feature/view/screens/customers_screen.dart';
 import 'package:daftary_app/modules/customers_module/home_feature/view/screens/suppliers_screen.dart';
-import 'package:daftary_app/modules/customers_module/home_feature/view/widgets/custom_container_widget.dart';
+import 'package:daftary_app/modules/customers_module/more_feateurs/view/widgets/custom_container_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

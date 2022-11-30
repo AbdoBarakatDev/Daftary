@@ -1,10 +1,9 @@
-import 'package:daftary_app/core/shared/models/customer_model.dart';
 import 'package:daftary_app/core/shared/widgets/bottom_navigationbar_widget.dart';
 import 'package:daftary_app/core/shared/widgets/default_appbar_widget.dart';
 import 'package:daftary_app/modules/customers_module/home_feature/controller/home_layout_cubit.dart';
 import 'package:daftary_app/modules/customers_module/home_feature/controller/home_layout_states.dart';
 import 'package:daftary_app/modules/customers_module/home_feature/view/screens/home_screen.dart';
-import 'package:daftary_app/modules/customers_module/home_feature/view/screens/more_screen.dart';
+import 'package:daftary_app/modules/customers_module/more_feateurs/view/screens/more_screen.dart';
 import 'package:daftary_app/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

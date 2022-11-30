@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:daftary_app/core/shared/helpers.dart/toast_helper.dart';
 import 'package:daftary_app/shared_featuers/auth_feature/controller/phone_auth_states.dart';
-import 'package:daftary_app/shared_featuers/auth_feature/view/screens/phone_otp_screen.dart';
 import 'package:daftary_app/shared_featuers/pin_code_featue/view/screens/pin_code_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

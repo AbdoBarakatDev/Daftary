@@ -51,7 +51,9 @@ ThemeData lightTheme = ThemeData(
       fontSize: 20,
       fontWeight: FontWeight.bold,
     ),
-    iconTheme: IconThemeData(color: Colors.black),
+    iconTheme: IconThemeData(
+      color: Colors.black,
+    ),
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: defaultAppColor,
       statusBarIconBrightness: Brightness.light,

@@ -9,6 +9,7 @@ class DefaultMaterialButton extends StatelessWidget {
   final String text;
 
   final Color? inActiveTextColor;
+  final BoxBorder? buttonBorder;
   final Color? activeButtonColor;
   final Color? inActiveButtonColor;
   final Color? textColor;
@@ -32,7 +33,8 @@ class DefaultMaterialButton extends StatelessWidget {
       this.isEnabled,
       this.inActiveTextColor,
       this.activeButtonColor,
-      this.inActiveButtonColor})
+      this.inActiveButtonColor,
+      this.buttonBorder})
       : super(key: key);
 
   @override
@@ -42,6 +44,7 @@ class DefaultMaterialButton extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius ?? 10),
+        border: buttonBorder,
         color: buttonColor ??
             (isSelected == true
                 ? (activeButtonColor) ?? defaultButtonColor

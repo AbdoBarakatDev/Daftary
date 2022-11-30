@@ -66,7 +66,7 @@ class PhoneOtpScreen extends StatelessWidget {
                                 ),
                                 validatorFunction: (val) {
                                   if (val!.length != 6) {
-                                    return "Type a correct phone number";
+                                    return "Incorrect OTP Code";
                                   }
                                 },
                                 onSubmitted: (val) async {
